@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="JS代码网提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="__PUBLIC__/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/assets/js/html5shiv.js"></script>
+		<script src="__PUBLIC__/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- navbar -->
+		{include file="public/navbar"}
+		<!-- /navbar -->
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<!-- sidebar -->
+				{include file="public/sidebar"}
+				<!-- /sidebar -->
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+							<li class="active">控制台</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								学生管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									 修改学生
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+						<div class="row">
+							<div class="col-xs-12">
+								<form class="form-horizontal" role="form" action="{:url('student/studentupdhanddle')}" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="student_id" value="{$student_find.student_id}">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_num"> 学生编号 </label>
+
+										<div class="col-sm-9">
+											<input id="student_num" name="student_num" class="col-xs-10 col-sm-5" type="text" value="{$student_find.student_num}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_name"> 学生姓名 </label>
+
+										<div class="col-sm-9">
+											<input id="student_name" name="student_name" class="col-xs-10 col-sm-5" type="text" value="{$student_find.student_name}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="department_name"> 学生性别 </label>
+										<div class="col-sm-9">
+											<select class="col-xs-10 col-sm-5" name="student_sex">
+											{if condition="$student_find.student_sex eq '男'"}
+											<option selected="selected">男</option>
+											<option>女</option>
+											{else if/}
+											<option>男</option>
+											<option selected="selected">女</option>
+											{/if}
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_home"> 学生籍贯 </label>
+
+										<div class="col-sm-9">
+											<input id="student_home" name="student_home" class="col-xs-10 col-sm-5" type="text" value="{$student_find.student_home}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_address"> 家庭住址 </label>
+
+										<div class="col-sm-9">
+											<input id="student_address" name="student_address" class="col-xs-10 col-sm-5" type="text" value="{$student_find.student_address}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_birth"> 出生年月 </label>
+
+										<div class="col-sm-9">
+											<input id="student_birth" name="student_birth" class="col-xs-10 col-sm-5" type="text" value="{$student_find.student_birth}" placeholder="例如199909">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_IDcard"> 身份证号 </label>
+
+										<div class="col-sm-9">
+											<input id="student_IDcard" name="student_IDcard" class="col-xs-10 col-sm-5" type="text" value="{$student_find.student_IDcard}">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="student_thumb"> 学生照片 </label>
+
+										<div class="col-sm-9">
+											<input id="student_thumb" name="student_thumb" class="col-xs-10 col-sm-5" type="file" value="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="department_name"> 政治面貌 </label>
+
+										<div class="col-sm-9">
+											<select class="col-xs-10 col-sm-5" name="party_id">
+											{volist name="party_select" id="vo"}
+											{if condition="$student_find.party_id eq $vo.party_id"}
+											<option value="{$vo.party_id}" selected="">{$vo.party_id}{$vo.party_name}</option>
+											{else if/}
+											<option value="{$vo.party_id}">{$vo.party_id}{$vo.party_name}</option>
+											{/if}
+											{/volist}
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="department_name"> 课程学院 </label>
+
+										<div class="col-sm-9">
+											<select class="col-xs-5 col-sm-2" onchange="college(this)" name="college_id">
+											<option value="0">——请选择学院——</option>
+											{volist name="college_select" id="vo1"}
+											<option value="{$vo1.college_id}">{$vo1.college_num}{$vo1.college_name}</option>
+											{/volist}
+											</select>
+											<select class="col-xs-5 col-sm-2" onchange="department(this)" id="select2" name="department_id">
+											<option value="0">——请选择系——</option>
+											</select>
+											</select>
+											<select class="col-xs-5 col-sm-2" id="select3" name="classes_id">
+											<option value="0">——请选择班级——</option>
+											</select>
+											</select>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+										<input type="submit" name="" value="修改学生" class="btn btn-info">
+										<input type="reset" name="" value="重置" class="btn">
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script src='__PUBLIC__/assets/js/jquery-2.0.3.min.js'>
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__PUBLIC__/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__PUBLIC__/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="__PUBLIC__/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<script src="__PUBLIC__/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.sparkline.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="__PUBLIC__/assets/js/ace-elements.min.js"></script>
+		<script src="__PUBLIC__/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			function college(obj){
+				var college_id = $(obj).val();
+				if(college_id=='0'){
+					$("#select2 option:gt(0)").remove();
+					$("#select3 option:gt(0)").remove();
+				}
+				else{
+					$("#select2 option:gt(0)").remove();
+					$("#select3 option:gt(0)").remove();
+					$.ajax({
+						type:"post",
+						data:{"college_id":college_id},
+						url:"{:url('student/choosecollegeajax')}",
+						success:function(data){
+							$.each(data,function(k,v){
+								$("#select2").append('<option value="'+v.department_id+'">'+v.department_name+'</option>');
+							})
+						}
+					})
+				}
+				
+			}
+		</script>
+		<script type="text/javascript">
+			function department(obj){
+				var department_id = $(obj).val();
+				if(department_id=='0'){
+					$("#select3 option:gt(0)").remove();
+				}
+				else{
+					$("#select3 option:gt(0)").remove();
+					$.ajax({
+						type:"post",
+						data:{"department_id":department_id},
+						url:"{:url('student/choosedepartmentajax')}",
+						success:function(data){
+							$.each(data,function(k,v){
+								$("#select3").append('<option value="'+v.classes_id+'">'+v.classes_num+v.classes_name+'</option>');
+							})
+						}
+					})
+				}
+				
+			}
+		</script>
+	</body>
+</html>
+

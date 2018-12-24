@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="JS代码网提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="__PUBLIC__/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/assets/js/html5shiv.js"></script>
+		<script src="__PUBLIC__/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- navbar -->
+		{include file="public/navbar"}
+		<!-- /navbar -->
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<!-- sidebar -->
+				{include file="public/sidebar"}
+				<!-- /sidebar -->
+
+				<div class="main-content">
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								院系管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									班级课程
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+								<!-- PAGE CONTENT BEGINS -->
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="form-horizontal" role="form">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="college_name"> 班级名称 </label>
+
+										<div class="col-sm-9">
+											<input id="college_name" name="" readonly="" class="col-xs-10 col-sm-7" type="text" value="{$classes_get_toArray.classes_num}{$classes_get_toArray.classes_name}">
+										</div>
+									</div>
+									{volist name="classes_get_toArray.teachercourse" id="vo1"}
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="college_name"> 课程名称 </label>
+
+										<div class="col-sm-9">
+											<select class="col-xs-10 col-sm-2" onchange="college(this)">
+											<option value="0">——请选择学院——</option>
+											{volist name="college_select" id="vo2"}
+											{if condition="$vo1.teacher.college.college_id eq $vo2.college_id"}
+											<option selected="selected" value="{$vo2.college_id}">{$vo2.college_num}{$vo2.college_name}</option>
+											{else if/}
+											<option value="{$vo2.college_id}">{$vo2.college_num}{$vo2.college_name}</option>
+											{/if}
+											{/volist}
+											</select>
+											<select class="col-xs-10 col-sm-2" onchange="course(this)">
+											<option value="0">——请选择课程——</option>
+											{volist name='$vo1.teacher.college.course' id="vo2"}
+											{if condition="$vo2.course_id eq $vo1.course.course_id"}
+											<option value="{$vo2.course_id}" selected="selected">{$vo2.course_name}</option>
+											{else if/}
+											<option value="{$vo2.course_id}">{$vo2.course_name}</option>
+											{/if}
+											{/volist}
+											</select>
+											<select class="col-xs-10 col-sm-2" onchange="teacher(this)">
+											<option value="0">——请选择教师——</option>
+											{volist name="$vo1.course.teacher" id="vo2"}
+											{if condition="$vo1.teacher.teacher_id eq $vo2.teacher_id"}
+											<option  value="{$vo2.teacher_id}" selected="selected">{$vo2.teacher_id}{$vo2.teacher_name}</option>
+											{else if/}
+											<option  value="{$vo2.teacher_id}">{$vo2.teacher_id}{$vo2.teacher_name}</option>
+											{/if}
+											{/volist}
+											</select>
+											<button class="btn btn-grey btn-xs radius-4 bigger-120" onclick="teachercoursedel(this)">
+												删除
+											</button>
+										</div>
+										
+									</div>
+									{/volist}
+								</div>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div>
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script src='__PUBLIC__/assets/js/jquery-2.0.3.min.js'>
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__PUBLIC__/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__PUBLIC__/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="__PUBLIC__/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<script src="__PUBLIC__/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.sparkline.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="__PUBLIC__/assets/js/ace-elements.min.js"></script>
+		<script src="__PUBLIC__/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			function college(obj){
+				var college_id = $(obj).val();
+				var select2 = $(obj).parent().find('select:eq(1)');
+				var select3 = $(obj).parent().find('select:eq(2)');
+				if(college_id == '0'){
+					select2.find('option:gt(0)').remove();
+					select3.find('option:gt(0)').remove();
+				}
+				else{
+					select2.find('option:gt(0)').remove();
+					select3.find('option:gt(0)').remove();
+					$.ajax({
+						type:"post",
+						data:{"college_id":college_id},
+						url:"{:url('classes/choosecollege')}",
+						success:function(data){
+							$.each(data,function(k,v){
+
+								var option = '<option value="'+v.course_id+'">'+v.course_name+'</option>';
+								select2.append(option);
+							})
+						}
+					})
+				}
+			}
+		</script>
+		<script type="text/javascript">
+			function course(obj){
+				var course_id = $(obj).val();
+				
+				var select3 = $(obj).parent().find('select:eq(2)');
+				if(course_id == '0'){
+					
+					select3.find('option:gt(0)').remove();
+				}
+				else{
+					
+					select3.find('option:gt(0)').remove();
+					$.ajax({
+						type:"post",
+						data:{"course_id":course_id},
+						url:"{:url('classes/choosecourse')}",
+						success:function(data){
+							$.each(data,function(k,v){
+
+								var option = '<option value="'+v.teacher_id+'">'+v.teacher_name+'</option>';
+								select3.append(option);
+							})
+						}
+					})
+				}
+			}
+		</script>
+	<script type="text/javascript">
+		function teachercoursedel(obj){
+			var classes_id = "{$classes_get_toArray.classes_id}";
+			var course_id = $(obj).parent().find('select:eq(1)').val();
+			var teacher_id = $(obj).parent().find('select:eq(2)').val();
+			if(course_id=='0'){
+				alert('请选择课程');
+			}
+			else if(teacher_id=='0'){
+				alert('请选择授课教师');
+			}
+			else{
+				$.ajax({
+					type:"post",
+					data:{"classes_id":classes_id,"course_id":course_id,"teacher_id":teacher_id},
+					url:"{:url('classes/teachercoursedelajax')}",
+					success:function(){
+						$(obj).parent().parent().remove();
+					}
+				})
+			}
+		}
+	</script>
+	</body>
+</html>
+

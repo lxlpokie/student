@@ -1,0 +1,16 @@
+{volist name="student_select" id="vo"}
+<tr class="odd">
+	<td class=" ">{$vo.student_num}</td>
+	<td class=" ">{$vo.student_name}</td>
+	<td class=" ">
+		<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+			<a class="green" href="javascript:if(confirm('确认查看？')) location='{:url('student/studentinfo',array('student_id'=>$vo.student_id))}'">
+				<i class="icon-eye-open bigger-130"></i>
+			</a>
+			<a class="red" href="javascript:if(confirm('确认删除学生？')) location='{:url('student/studentdel',array('student_id'=>$vo.student_id))}'">
+				<i class="icon-trash bigger-130"></i>
+			</a>
+		</div>
+	</td>
+</tr>
+{/volist}

@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="JS代码网提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="__PUBLIC__/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/assets/js/html5shiv.js"></script>
+		<script src="__PUBLIC__/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- navbar -->
+		{include file="public/navbar"}
+		<!-- /navbar -->
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<!-- sidebar -->
+				{include file="public/sidebar"}
+				<!-- /sidebar -->
+
+				<div class="main-content">
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								权限管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									管理员列表
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+								<div class="row">
+									<div class="col-xs-12">
+
+										<div class="table-responsive">
+											<div id="sample-table-2_wrapper" class="dataTables_wrapper" role="grid">
+											<form action="{:url('cate/sort')}" method="post">
+												<table id="sample-table-2" class="table table-striped table-bordered table-hover dataTable" aria-describedby="sample-table-2_info">
+												<thead>
+														<th class="sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 118px;" aria-label="Price: activate to sort column ascending">用户组名称</th>
+														<th class="hidden-480 sorting" role="columnheader" tabindex="0" aria-controls="sample-table-2" rowspan="1" colspan="1" style="width: 132px;" aria-label="Clicks: activate to sort column ascending">操作</th>
+														
+														</tr>
+												</thead>
+
+											<tbody role="alert" aria-live="polite" aria-relevant="all">
+													{volist name="admin_select" id="vo"}
+													<tr class="odd">
+														<td class=" ">{$vo.admin_name}</td>
+														<td class=" ">
+															<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+																<a class="green" href="javascript:if(confirm('确认修改{$vo.admin_name}？')) location='{:url('rights/adminupd',array('admin_id'=>$vo.admin_id))}'">
+																	<i class="icon-edit bigger-130"></i>
+																<a class="red" href="javascript:if(confirm('确认将{$vo.admin_name}删除？')) location='{:url('rights/admindel',array('admin_id'=>$vo.admin_id))}'">
+																	<i class="icon-trash bigger-130"></i>
+																</a>
+															</div>
+														</td>
+													</tr>
+													{/volist}
+												</tbody>
+											</table>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+
+								
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div>
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script src='__PUBLIC__/assets/js/jquery-2.0.3.min.js'>
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__PUBLIC__/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__PUBLIC__/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="__PUBLIC__/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<script src="__PUBLIC__/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.sparkline.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="__PUBLIC__/assets/js/ace-elements.min.js"></script>
+		<script src="__PUBLIC__/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			function changeStatus(obj){
+				$.ajax({
+					data:{"id":obj},
+					type:"post",
+					url:"{:url('rights/changeGroupStatus')}",
+					success:function(data){
+						window.location.reload();
+					}
+				})
+			}
+		</script>
+
+	</body>
+</html>
+

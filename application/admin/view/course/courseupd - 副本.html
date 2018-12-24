@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="JS代码网提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="__PUBLIC__/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome.min.css" />
+
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/assets/css/ace-skins.min.css" />
+
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__PUBLIC__/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="__PUBLIC__/assets/js/ace-extra.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/assets/js/html5shiv.js"></script>
+		<script src="__PUBLIC__/assets/js/respond.min.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<!-- navbar -->
+		{include file="public/navbar"}
+		<!-- /navbar -->
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+				<!-- sidebar -->
+				{include file="public/sidebar"}
+				<!-- /sidebar -->
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="#">首页</a>
+							</li>
+							<li class="active">控制台</li>
+						</ul><!-- .breadcrumb -->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="icon-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+							<h1>
+								课程管理
+								<small>
+									<i class="icon-double-angle-right"></i>
+									 修改课程
+								</small>
+							</h1>
+						</div><!-- /.page-header -->
+						<div class="row">
+							<div class="col-xs-12">
+								<form class="form-horizontal" role="form" action="{:url('course/courseupdhanddle')}" method="post" enctype="multipart/form-data">
+									<input type="hidden" name="course_id" value="{$course_find.course_id}">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="course_name"> 课程名称 </label>
+										<div class="col-sm-9">
+											<input id="course_name" name="course_name" class="col-xs-10 col-sm-5" type="text" value="{$course_find.course_name}">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="college_id"> 所属学院 </label>
+										<div class="col-xs-4">
+											<select class="form-control" id="pid" name="college_id">
+											<option value="0">——请选择所属学院——</option>
+												{volist name="college_select" id="vo"}
+												{if condition="$vo.college_id eq $course_find.college_id"}
+												<option value="{$vo.college_id}" selected="">{$vo.college_num}{$vo.college_name}</option>
+												{else if/}
+												<option value="{$vo.college_id}">{$vo.college_num}{$vo.college_name}</option>
+												{/if}
+												{/volist}
+												
+											</select>
+										</div>
+									</div>
+									<div class="space-4"></div>
+
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+										<input type="submit" name="" value="修改课程" class="btn btn-info">
+										<input type="reset" name="" value="重置" class="btn">
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<![endif]-->
+
+		<!--[if !IE]> -->
+
+		<script src='__PUBLIC__/assets/js/jquery-2.0.3.min.js'>
+		</script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='__PUBLIC__/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
+</script>
+<![endif]-->
+
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='__PUBLIC__/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		<script src="__PUBLIC__/assets/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!--[if lte IE 8]>
+		  <script src="__PUBLIC__/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+		<script src="__PUBLIC__/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="__PUBLIC__/assets/js/jquery.sparkline.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="__PUBLIC__/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="__PUBLIC__/assets/js/ace-elements.min.js"></script>
+		<script src="__PUBLIC__/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+
+	<!-- jqeury-file-upload -->
+		<!-- <link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">   -->
+		<link rel="stylesheet" href="__PUBLIC__/jfu/css/jquery.fileupload.css">  
+		<link rel="stylesheet" href="__PUBLIC__/jfu/css/jquery.fileupload-ui.css"> 
+		<!-- <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>  -->
+		<script src="__PUBLIC__/jfu/js/vendor/jquery.ui.widget.js"></script>  
+		<script src="__PUBLIC__/jfu/js/jquery.fileupload.js"></script>  
+		<script src="__PUBLIC__/jfu/js/jquery.iframe-transport.js"></script>  
+
+		<script type="text/javascript">
+		    $(function() {  
+		        $("#course_thumb").fileupload({  
+		                url: '{:url("admin/course/uploadthumb")}',  
+		                sequentialUploads: true  
+		            }).bind('fileuploadprogress', function (e, data) {  
+		                var progress = parseInt(data.loaded / data.total * 100, 10);  
+		                $("#thumb_progress").css('width',progress + '%');  
+		                $("#thumb_progress").html(progress + '%');  
+		            }).bind('fileuploaddone', function (e, data) {console.log(data);
+		                $("#img").attr("src",data.result);  
+		                $("#thumb_upload").css({display:"none"}); 
+		                $("#thumb_cancle").css({display:""}); 
+		            });  
+		                 
+		        });
+		    </script> 
+		    <script type="text/javascript">
+		    	$(function(){
+		    		$('#thumb_cancle').click(function(){
+		    			$.ajax({
+		    				url:'{:url("admin/course/canclethumb")}',
+		    				type:'post',
+		    				success:function(data){
+		    					$("#thumb_upload").css({display:""}); 
+		                		$("#thumb_cancle").css({display:"none"});
+								$("#thumb_progress").css('width',0);
+								$("#thumb_progress").html('');
+		                		$("#img").attr("src","__PUBLIC__/assets/images/upload.png");  
+		    				}
+		    			});
+		    		});
+		    	});
+		    </script>
+			<!-- 课程细节图 -->
+		    <script type="text/javascript">
+			$(function(){
+				$('#course_img').fileupload({
+					url:'{:url("admin/course/imgupload")}',
+					dataType: "json",   
+				    multipart:true,
+				    sequentialUploads: true,
+				    done:function(e,data){
+				    	$(".preview").append("<div style='margin-top:10px;'><img src="+data.result+" width='100'>");
+				    	$(".preview").append("<a class='img_cancle btn btn-warning' role='button' style=''>删除</a></div>");
+				    },
+				    progressall:function(e,data){
+				    	var progress = parseInt(data.loaded / data.total * 100, 10);  
+				        $("#img_progress").css("width", progress + "%");  
+				        $("#img_progress").html("上传总进度："+progress+"%"); 
+				    }
+				})
+			})
+			</script>
+			<script type="text/javascript">
+				$(function(){
+					$(".preview").on("click",".img_cancle",function(){
+						 var index = $(".preview a").index(this);
+						 var me = this;
+			   			 $.ajax({
+			   			 	data:{'index':index},
+			   			 	type:"post",
+			   			 	url:"{:url('admin/course/imgcancle')}",
+			   			 	success:function(data){
+			   			 		$(me).prev('div').css({display:"none"});
+			   			 		$(me).css({display:"none"});
+			   			 	}
+			   			 })
+					})
+				})
+			</script>
+			<!-- /课程细节图 -->
+		    <!-- <script src="__PUBLIC__/assets/js/fuelux/data/fuelux.tree-sampledata.js"></script> -->
+		    <script src="__PUBLIC__/assets/js/fuelux/fuelux.tree.min.js"></script>
+		    <script type="text/javascript">
+			jQuery(function($){
+
+		$('#tree1').ace_tree({
+			dataSource: treeDataSource ,
+			multiSelect:true,
+			loadingHTML:'&lt;div class="tree-loading"&gt;&lt;i class="icon-refresh icon-spin blue"&gt;&lt;/i&gt;&lt;/div&gt;',
+			'open-icon' : 'icon-minus',
+			'close-icon' : 'icon-plus',
+			'selectable' : true,
+			'selected-icon' : 'icon-ok',
+			'unselected-icon' : 'icon-remove'
+		});
+
+		$('#tree2').ace_tree({
+			dataSource: treeDataSource2 ,
+			loadingHTML:'&lt;div class="tree-loading"&gt;&lt;i class="icon-refresh icon-spin blue"&gt;&lt;/i&gt;&lt;/div&gt;',
+			'open-icon' : 'icon-folder-open',
+			'close-icon' : 'icon-folder-close',
+			'selectable' : false,
+			'selected-icon' : null,
+			'unselected-icon' : null
+		});
+
+
+
+		/**
+		$('#tree1').on('loaded', function (evt, data) {
+		});
+
+		$('#tree1').on('opened', function (evt, data) {
+		});
+
+		$('#tree1').on('closed', function (evt, data) {
+		});
+
+		$('#tree1').on('selected', function (evt, data) {
+		});
+		*/
+});
+		</script>
+
+		<!-- /jquery-file-upliad -->
+	</body>
+</html>
+
